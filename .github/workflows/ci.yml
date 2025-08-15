@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node 24.6 and PNPM
         uses: actions/setup-node@v4
         with:
-          node-version: '24.6.0'
+          node-version: '22'
           cache: 'pnpm'
 
       - name: Enable Corepack
