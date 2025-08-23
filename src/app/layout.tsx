@@ -25,7 +25,7 @@ export default function RootLayout({
       */}
       <body className={`${inter.className} bg-[var(--color-brand-orange)] relative min-h-screen flex flex-col`}>
         {/* ГЛОБАЛЬНЫЙ СЛОЙ С ТЕКСТУРОЙ */}
-        <div className="absolute inset-0 bg-[url('/textures/dust-pattern.png')] bg-repeat opacity-20 pointer-events-none z-[-1]"></div>
+        <div className="absolute inset-0 bg-[url('/textures/dust-pattern@0,5x.png')] bg-repeat opacity-20 pointer-events-none z-[-1]"></div>
         
         <Header />
         
