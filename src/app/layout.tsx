@@ -1,10 +1,16 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Unbounded } from 'next/font/google';
 import './globals.css';
 
 import Header from '@/components/Header';
 
 const inter = Inter({ subsets: ['latin'] });
+
+const unbounded = Unbounded({
+  subsets: ['cyrillic', 'latin'],
+  weight: ['400', '700'],
+});
 
 export const metadata: Metadata = {
   title: 'Media Кит',
