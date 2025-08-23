@@ -1,7 +1,7 @@
 export default function HomePage() {
   return (
     <section>
-      <h1>Школа Цифрового Творчества</h1>
+      {/* <h1>Школа Цифрового Творчества</h1>
       <p>Пилотная смена: Web-дизайн, React, Backend (Node.js основы).</p>
       <ul>
         <li>
@@ -19,7 +19,7 @@ export default function HomePage() {
         <li>
           <a href="/(public)/contact">Контакты</a>
         </li>
-      </ul>
+      </ul> */}
     </section>
   )
 }

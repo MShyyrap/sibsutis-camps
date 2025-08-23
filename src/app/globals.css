@@ -1,35 +1,9 @@
+@import 'tailwindcss';
+
 :root {
-  --bg: #ffffff;
-  --fg: #111111;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Noto Sans',
-    'Apple Color Emoji', 'Segoe UI Emoji';
-}
-
-a {
-  color: inherit;
-  text-decoration: underline;
-}
-
-h1 {
-  margin: 0 0 12px;
-  font-size: 24px;
-}
-
-main {
-  max-width: 960px;
-  margin: 0 auto;
+  --color-brand-orange: #ED691F;
+  --spacing-25: 25px;
+  --spacing-30: 30px;
+  --spacing-65: 65px;
+  --spacing-140: 140px;
 }
