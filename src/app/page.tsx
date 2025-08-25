@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import HeroForm from '@/components/HeroForm';
+
 import { Unbounded } from 'next/font/google';
 
 const unbounded = Unbounded({
@@ -18,10 +20,10 @@ const golos = Golos_Text({
 export default function HomePage() {
   return (
     <main className="flex flex-col flex-grow">
-      
+
       {/* Секция "Hero" */}
-      <section className="container mx-auto px-6 flex gap-16 pt-15 flex-grow">
-        
+      <section className="container mx-auto px-6 flex gap-16 pt-15 flex-grow relative">
+
         <div className="w-5/12 flex flex-col justify-center">
           <h1 className="text-[90px] font-bold text-white flex items-center">
             MEDIA КИТ<span className={`text-[40px] ${unbounded.className}`}>-</span>
@@ -41,6 +43,13 @@ export default function HomePage() {
             priority
           />
         </div>
+
+        <div className="absolute bottom-[20px] left-0 w-full px-6">
+          <div className="container mx-auto">
+            <HeroForm />
+          </div>
+        </div>
+
       </section>
 
       <div className="bg-black text-right py-2 px-4 h-[58px]">
