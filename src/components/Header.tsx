@@ -10,12 +10,10 @@ const navLinks = [
 
 export default function Header() {
   return (
-    // Убираем фон и relative, оставляем только отступы и цвет текста
     <header className="w-full text-white px-[var(--spacing-65)]">
-      {/* Контейнер для контента */}
+
       <div className="flex justify-between items-start py-1">
         
-        {/* Элемент 1: Логотип */}
         <div className="mt-[var(--spacing-25)]">
           <Link href="/">
             <Image
@@ -28,7 +26,6 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Элемент 2: Группа (Навигация + Иконка) */}
         <div className="flex items-start gap-[var(--spacing-140)]">
           <nav className="mt-[var(--spacing-30)]">
             <ul className="flex items-center gap-[var(--spacing-140)]">
@@ -46,7 +43,6 @@ export default function Header() {
           </nav>
 
           <div className="mt-[var(--spacing-30)]">
-            {/* Оборачиваем иконку в Link */}
             <Link href="/login" className="block hover:opacity-80 transition-opacity">
               <Image
                 src="/icons/account.svg"
