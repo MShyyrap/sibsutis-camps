@@ -31,9 +31,9 @@ export default function ChatMessage({ message, isLastInGroup = false }: { messag
           <div className="mt-[10px] inline-flex items-center gap-2 bg-[var(--color-brand-orange)] px-[11px] py-[6px] rounded-full">
             
             {message.reactions.map((reactionName) => (
-              <div
-                key={reactionName}
-                className={`w-8 h-8 rounded-full flex items-center justify-center`}
+              <div key={reactionName}
+                className={`w-8 h-8 rounded-full flex items-center justify-center
+                  ${reactionName === 'heart' && 'transition-transform duration-200 ease-in-out hover:scale-125 hover:-rotate-12'}`}
               >
                 <Image
                   src={`/icons/${reactionName}-icon.svg`}
@@ -46,7 +46,6 @@ export default function ChatMessage({ message, isLastInGroup = false }: { messag
             
           </div>
         )}
-
       </div>
 
     </div>
