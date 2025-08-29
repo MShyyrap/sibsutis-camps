@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import HeroForm from '@/components/HeroForm';
 
@@ -17,12 +16,15 @@ const golos = Golos_Text({
   weight: ['400', '700'],
 });
 
+import ChatMessage from '@/components/ChatMessage';
+import { messages } from '@/data/chatMessages';
+
 export default function HomePage() {
   return (
     <main className="flex flex-col flex-grow">
 
       {/* Секция "Hero" */}
-      <section className="container mx-auto px-6 flex gap-16 pt-15 flex-grow relative">
+      <section className="container mx-auto px-6 flex gap-16 pt-10 flex-grow relative">
 
         <div className="w-5/12 flex flex-col justify-center">
           <h1 className="text-[90px] font-bold text-white flex items-center">
@@ -58,9 +60,61 @@ export default function HomePage() {
         </p>
       </div>
 
-      <div className="h-[58px]">
+      {/* Секция "О нас" */}
+      <section className="pt-20 bg-gradient-to-b from-[var(--color-brand-orange)] from-50% to-[var(--color-brand-white)] relative h-[870px]">
 
-      </div>
+        <div className="absolute left-0 bottom-0 w-6/12 z-10">
+          <Image
+            src="/illustrations/cat-about.svg"
+            alt="Кот МедиаКит"
+            width={605}
+            height={574}
+            className="w-5/7 h-auto"
+          />
+        </div>
+
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-13/19 h-[100%]">
+          <div className="absolute inset-0 bg-[url('/textures/noise.png')] opacity-[67%]"></div>
+
+          <div className="relative z-10 h-full">
+            <div className="flex flex-col gap-6 pt-[200px] pl-[160px] pr-[80px] pb-[40px]">
+              {messages.map((msg, index) => {
+                const isLastInGroup = 
+                  index === messages.length - 1 || 
+                  messages[index + 1]?.type !== msg.type;
+
+                return (
+                  <ChatMessage 
+                    key={msg.id} 
+                    message={msg} 
+                    isLastInGroup={isLastInGroup}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute top-1/5 left-7/19 -translate-x-1/2 z-0">
+          <Image
+            src="/illustrations/lines.svg"
+            alt=""
+            width={82}
+            height={60}
+            aria-hidden="true"
+          />
+        </div>
+
+        <div className="container mx-auto px-6 relative z-20">
+          <h2 className={`text-5xl text-white font-bold mb-12 ${unbounded.className}`}>
+            ( <span className="text-black">О нас</span> )
+          </h2>
+        </div>
+      </section>
+
+      <div className="bg-black text-right py-2 px-4 h-[58px]"></div>
+
+      <div className="text-right py-2 px-4 h-[58px]"></div>
 
     </main>
   );

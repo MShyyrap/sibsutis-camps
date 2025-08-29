@@ -39,18 +39,18 @@ export default function BookingForm() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Имя"
-            className={`bg-transparent border-3 border-white p-3 w-full text-white placeholder:text-white text-2xl ${unbounded.className}`}
+            className={`bg-transparent border-3 border-white p-3 w-full text-white placeholder:text-white text-2xl ${unbounded.className} focus:placeholder:opacity-50`}
           />
           <input
             type="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder="Телефон"
-            className={`bg-transparent border-3 border-white p-3 w-full text-white placeholder:text-white text-2xl ${unbounded.className}`}
+            className={`bg-transparent border-3 border-white p-3 w-full text-white placeholder:text-white text-2xl ${unbounded.className} focus:placeholder:opacity-50`}
           />
           <button
             type="submit"
-            className={`bg-[var(--color-brand-blue)] hover:opacity-80 p-[15px] transition-colors whitespace-nowrap text-2xl ${unbounded.className}`}
+            className={`bg-[var(--color-brand-blue)] hover:bg-[#224177] p-[15px] transition-colors whitespace-nowrap text-2xl ${unbounded.className}`}
           >
             Отправить
           </button>
