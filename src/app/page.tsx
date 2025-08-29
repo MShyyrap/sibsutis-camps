@@ -6,7 +6,7 @@ import { Unbounded } from 'next/font/google';
 
 const unbounded = Unbounded({
   subsets: ['cyrillic', 'latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '700'],
 });
 
 import { Golos_Text } from 'next/font/google';
@@ -18,6 +18,7 @@ const golos = Golos_Text({
 
 import ChatMessage from '@/components/ChatMessage';
 import { messages } from '@/data/chatMessages';
+import { features } from '@/data/featuresData';
 
 export default function HomePage() {
   return (
@@ -114,8 +115,48 @@ export default function HomePage() {
 
       <div className="bg-black text-right py-2 px-4 h-[58px]"></div>
 
-      <div className="text-right py-2 px-4 h-[58px]"></div>
+      {/* Секция "Почему мы?" */}
+      <section className="py-20 bg-[var(--color-brand-white)]">
+        <div className="container mx-auto px-6">
+          
+          <h2 className={`relative text-5xl font-bold text-center mb-20 ${unbounded.className}`}>
+            <Image
+              src="/illustrations/bracket-left.svg"
+              alt=""
+              width={74}
+              height={62}
+              className="absolute right-[890px] -translate-y-1/2 mr-4"
+              aria-hidden="true"
+            />
+            Почему мы?
+            <Image
+              src="/illustrations/bracket-right.svg"
+              alt=""
+              width={74}
+              height={62}
+              className="absolute left-[890px] -translate-y-1/2 ml-4"
+              aria-hidden="true"
+            />
+          </h2>
 
+          <div className="flex gap-8 items-stretch">
+            {features.map((feature, index) => {
+              const widthClass = index === 1 ? 'w-[36%]' : 'w-[32%]';
+
+              return (
+                <div key={feature.number} className={`bg-white p-8 rounded-2xl shadow-[0_0_15px_4px_rgba(0,0,0,0.25)] text-center flex flex-col ${widthClass}`}>
+
+                  <p className={`text-6xl font-medium text-[var(--color-brand-blue)] ${unbounded.className}`}>{feature.number}</p>
+                  <h3 className={`text-2xl font-bold mt-10 min-h-[3.5rem] ${unbounded.className}`}>{feature.title}</h3>
+                  <p className="mt-10">{feature.description}</p>
+
+                </div>
+              );
+            })}
+          </div>
+          
+        </div>
+      </section>
     </main>
   );
 }
