@@ -1,7 +1,5 @@
 import Image from 'next/image';
 
-import HeroForm from '@/components/HeroForm';
-
 import { Unbounded } from 'next/font/google';
 
 const unbounded = Unbounded({
@@ -16,7 +14,10 @@ const golos = Golos_Text({
   weight: ['400', '700'],
 });
 
+import HeroForm from '@/components/HeroForm';
 import ChatMessage from '@/components/ChatMessage';
+import FinalBookingForm from '@/components/FinalBookingForm';
+
 import { messages } from '@/data/chatMessages';
 import { features } from '@/data/featuresData';
 
@@ -157,6 +158,11 @@ export default function HomePage() {
           
         </div>
       </section>
+
+      <FinalBookingForm />
+
+      <div className="text-right py-2 px-4 h-[58px]"></div>
+      
     </main>
   );
 }

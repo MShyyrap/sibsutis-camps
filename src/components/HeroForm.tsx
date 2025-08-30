@@ -3,6 +3,7 @@
 import Image from 'next/image';
 
 import { useState } from 'react';
+import { IMaskInput } from 'react-imask';
 
 import { Unbounded } from 'next/font/google';
 
@@ -14,6 +15,8 @@ const unbounded = Unbounded({
 export default function BookingForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+
+  const [isPhoneFocused, setIsPhoneFocused] = useState(false);
 
   return (
     <div className="relative">
@@ -41,16 +44,20 @@ export default function BookingForm() {
             placeholder="Имя"
             className={`bg-transparent border-3 border-white p-3 w-full text-white placeholder:text-white text-2xl ${unbounded.className} focus:placeholder:opacity-50`}
           />
-          <input
-            type="tel"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="Телефон"
-            className={`bg-transparent border-3 border-white p-3 w-full text-white placeholder:text-white text-2xl ${unbounded.className} focus:placeholder:opacity-50`}
+          <IMaskInput
+              mask="+7 (000) 000-00-00"
+              value={phone}
+              onAccept={(value) => setPhone(value as string)}
+              lazy={!isPhoneFocused && !phone}
+              type="tel"
+              placeholder="Телефон"
+              onFocus={() => setIsPhoneFocused(true)}
+              onBlur={() => setIsPhoneFocused(false)}
+              className={`bg-transparent border-3 border-white p-3 w-full text-white placeholder:text-white text-2xl ${unbounded.className}`}
           />
           <button
             type="submit"
-            className={`bg-[var(--color-brand-blue)] hover:bg-[#224177] p-[15px] transition-colors whitespace-nowrap text-2xl ${unbounded.className}`}
+            className={`bg-[var(--color-brand-blue)] hover:bg-[#224177] transition p-[15px] whitespace-nowrap text-2xl ${unbounded.className}`}
           >
             Отправить
           </button>
