@@ -17,9 +17,11 @@ const golos = Golos_Text({
 import HeroForm from '@/components/HeroForm';
 import ChatMessage from '@/components/ChatMessage';
 import FinalBookingForm from '@/components/FinalBookingForm';
+import FaqItem from '@/components//FaqItem';
 
 import { messages } from '@/data/chatMessages';
 import { features } from '@/data/featuresData';
+import { faqItems } from '@/data/faqData';
 
 export default function HomePage() {
   return (
@@ -158,10 +160,24 @@ export default function HomePage() {
           
         </div>
       </section>
-
+      
+      {/* Секция "Форма" */}
       <FinalBookingForm />
 
-      <div className="text-right py-2 px-4 h-[58px]"></div>
+      {/* Секция "Вопросы" */}
+      <section className="bg-[var(--color-brand-white)] py-20">
+      <div className="container mx-auto px-6">
+        <h2 className={`text-5xl text-[var(--color-brand-gray)] font-bold mb-12 ${unbounded.className}`}>
+          Часто задаваемые <span className="text-[var(--color-brand-orange)]">вопросы</span>
+        </h2>
+        
+        <div>
+          {faqItems.map((item) => (
+            <FaqItem key={item.id} item={item} />
+          ))}
+        </div>
+      </div>
+    </section>
       
     </main>
   );

@@ -33,7 +33,7 @@ export default function ChatMessage({ message, isLastInGroup = false }: { messag
             {message.reactions.map((reactionName) => (
               <div key={reactionName}
                 className={`w-8 h-8 rounded-full flex items-center justify-center
-                  ${reactionName === 'heart' && 'transition-transform duration-200 ease-in-out hover:scale-125 hover:-rotate-12'}`}
+                  ${reactionName === 'heart' && 'transition-transform duration-200 ease-in-out hover:scale-125'}`}
               >
                 <Image
                   src={`/icons/${reactionName}-icon.svg`}

@@ -2,10 +2,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const navLinks = [
-  { href: '/about', label: 'О нас' },
+  { href: '/home', label: 'Главная' },
   { href: '/calendar', label: 'Календарь' },
   { href: '/teachers', label: 'Преподаватели' },
-  { href: '/faq', label: 'Вопрос-ответ' },
 ];
 
 export default function Header() {
