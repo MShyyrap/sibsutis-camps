@@ -24,6 +24,39 @@ export default function PopupForm({ isOpen, setIsOpen }: { isOpen: boolean; setI
   const [phone, setPhone] = useState('');
   const [isPhoneFocused, setIsPhoneFocused] = useState(false);
   const [agreed, setAgreed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !phone || !agreed) {
+      setMessage('Заполните все поля и дайте согласие');
+      return;
+    }
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/submit-application', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, phone, formType: 'popup', agreed
+        }),
+      });
+
+      const data = await response.json();
+      setMessage(data.message);
+      if (data.success) {
+        setName('');
+        setPhone('');
+        setAgreed(false);
+      }
+    } catch (error) {
+      setMessage('Ошибка отправки');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   function closeModal() {
     setIsOpen(false);
@@ -72,7 +105,7 @@ export default function PopupForm({ isOpen, setIsOpen }: { isOpen: boolean; setI
         </p>
       </div>
 
-      <form className="mt-6 space-y-4">
+      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <input
           type="text"
           placeholder="Имя и фамилия"
@@ -101,11 +134,17 @@ export default function PopupForm({ isOpen, setIsOpen }: { isOpen: boolean; setI
       <div className="mt-6">
         <button
           type="button"
-          className={`w-full bg-[var(--color-brand-orange)] text-white p-3 transition hover:bg-[#D65012] ${golos.className}`}
+          disabled={isSubmitting}
+          className={`w-full bg-[var(--color-brand-orange)] text-white p-3 transition hover:bg-[#D65012] ${golos.className} disabled:opacity-50`}
           onClick={closeModal}
         >
-          Отправить
+          {isSubmitting ? 'Отправка...' : 'Отправить'}
         </button>
+        {message && (
+          <div className="text-center p-2 text-white mt-2">
+            {message}
+          </div>
+        )}
       </div>
     </Modal>
   );

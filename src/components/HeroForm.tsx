@@ -17,13 +17,42 @@ export default function BookingForm() {
   const [phone, setPhone] = useState('');
 
   const [isPhoneFocused, setIsPhoneFocused] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !phone) return;
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/submit-application', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, phone, formType: 'hero', agreed: true
+        }),
+      });
+
+      const data = await response.json();
+      setMessage(data.message);
+      if (data.success) {
+        setName('');
+        setPhone('');
+      }
+    } catch (error) {
+      setMessage('Ошибка отправки');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="relative">
 
       <div className="absolute -bottom-1 -left-1 w-full h-[100px] bg-white"></div>
 
-      <form className="bg-black text-white w-full py-5 px-8 flex items-center gap-7 relative z-10">
+      <form onSubmit={handleSubmit} className="bg-black text-white w-full py-5 px-8 flex items-center gap-7 relative z-10">
         <div className="flex-shrink-0">
           <p className={`text-2xl ${unbounded.className}`}>Забронируй<br />путёвку</p>
         </div>
@@ -57,13 +86,19 @@ export default function BookingForm() {
           />
           <button
             type="submit"
-            className={`bg-[var(--color-brand-blue)] hover:bg-[#224177] transition p-[15px] whitespace-nowrap text-2xl ${unbounded.className}`}
+            disabled={isSubmitting}
+            className={`bg-[var(--color-brand-blue)] hover:bg-[#224177] transition p-[15px] whitespace-nowrap text-2xl ${unbounded.className} disabled:opacity-50`}
           >
-            Отправить
+            {isSubmitting ? 'Отправка...' : 'Отправить'}
           </button>
 
         </div>
       </form>
+      {message && (
+        <div className="text-center p-2 text-white">
+          {message}
+        </div>
+      )}
     </div>
   );
 }

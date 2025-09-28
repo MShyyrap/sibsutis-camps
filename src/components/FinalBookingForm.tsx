@@ -22,11 +22,44 @@ export default function FinalBookingForm() {
   const [agreed, setAgreed] = useState(false);
 
   const [isPhoneFocused, setIsPhoneFocused] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !phone || !agreed) {
+      setMessage('Заполните все поля и дайте согласие');
+      return;
+    }
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/submit-application', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, phone, formType: 'final', agreed
+        }),
+      });
+
+      const data = await response.json();
+      setMessage(data.message);
+      if (data.success) {
+        setName('');
+        setPhone('');
+        setAgreed(false);
+      }
+    } catch (error) {
+      setMessage('Ошибка отправки');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section className="bg-black text-white py-16">
       <div className="container mx-auto px-6 flex items-center gap-16">
-        
+
         <div className="w-[40%]">
           <h2 className={`text-5xl leading-tight font-bold text-[var(--color-brand-orange)] ${unbounded.className}`}>
             Забронировать <span className='text-[var(--color-brand-white)]'>путевку</span>
@@ -37,12 +70,12 @@ export default function FinalBookingForm() {
         </div>
 
         <div className="w-[60%]">
-          <form className="bg-[var(--color-brand-gray)] p-8 relative">
+          <form onSubmit={handleSubmit} className="bg-[var(--color-brand-gray)] p-8 relative">
             <div className="absolute inset-0 bg-[url('/textures/dust-pattern@0,5x.png')] bg-repeat opacity-20 pointer-events-none"></div>
 
             <div className="relative z-10">
               <div className="flex gap-4 mb-4">
-                <input 
+                <input
                   type="text"
                   placeholder="Имя и фамилия"
                   value={name}
@@ -63,9 +96,10 @@ export default function FinalBookingForm() {
               </div>
               <button
                 type="submit"
-                className={`w-full bg-[var(--color-brand-orange)] text-white text-base p-3 transition hover:bg-[#D65012] ${golos.className}`}
+                disabled={isSubmitting}
+                className={`w-full bg-[var(--color-brand-orange)] text-white text-base p-3 transition hover:bg-[#D65012] ${golos.className} disabled:opacity-50`}
               >
-                Отправить
+                {isSubmitting ? 'Отправка...' : 'Отправить'}
               </button>
               <div className="mt-4 flex items-center">
                 <CustomCheckbox
@@ -75,6 +109,11 @@ export default function FinalBookingForm() {
                 />
               </div>
             </div>
+            {message && (
+              <div className="text-center p-2 text-white mt-2">
+                {message}
+              </div>
+            )}
           </form>
         </div>
 

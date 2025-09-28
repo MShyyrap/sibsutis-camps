@@ -13,28 +13,30 @@ interface CustomCheckboxProps {
   label: string;
   checked: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
-export default function CustomCheckbox({ label, checked, onChange }: CustomCheckboxProps) {
+export default function CustomCheckbox({ label, checked, onChange, disabled }: CustomCheckboxProps) {
   return (
     <label className="flex items-center cursor-pointer">
-      <input 
+      <input
         type="checkbox"
         checked={checked}
         onChange={onChange}
+        disabled={disabled}
         className="sr-only peer"
       />
 
-      <div 
+      <div
         className="w-5 h-5 bg-transparent border-2 border-white flex-shrink-0
           peer-checked:bg-[var(--color-brand-orange)]
           peer-checked:border-[var(--color-brand-orange)] transition ease-in-out"
       >
 
-        <svg 
-          className={`w-full h-full text-white ${checked ? 'block' : 'hidden'}`} 
-          viewBox="0 0 24 24" 
-          fill="none" 
+        <svg
+          className={`w-full h-full text-white ${checked ? 'block' : 'hidden'}`}
+          viewBox="0 0 24 24"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
