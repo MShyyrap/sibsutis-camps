@@ -28,44 +28,46 @@ export default function HomePage() {
     <main className="flex flex-col flex-grow">
 
       {/* Секция "Hero" */}
-      <section className="container mx-auto px-6 flex gap-16 pt-10 flex-grow relative">
+      <section className="container mx-auto px-6 flex flex-col pt-10 flex-grow relative">
 
-        <div className="w-5/12 flex flex-col justify-center">
-          <h1 className="text-[90px] font-bold text-white flex items-center">
-            MEDIA КИТ<span className={`text-[40px] ${unbounded.className}`}>-</span>
-          </h1>
-          <p className={`text-2xl text-white ${unbounded.className}`}>
-            облако знаний<br/>для твоего роста
-          </p>
+        <div className="flex flex-col md:flex-row md:gap-16">
+          <div className="w-full items-center md:w-5/12 flex flex-col justify-center md:items-start">
+            <h1 className="text-[52px] leading-15 font-bold text-white flex items-center lg:text-7xl xl:text-[90px] md:leading-none">
+              MEDIA КИТ<span className={`text-[40px] ${unbounded.className}`}>-</span>
+            </h1>
+            <p className={`text-base text-center md:text-left text-white ${unbounded.className} lg:text-xl`}>
+              облако знаний<br/>для твоего роста
+            </p>
+          </div>
+
+          <div className="w-full md:w-7/12 flex mt-8 md:mt-0">
+            <Image
+              src="/illustrations/cat-hero.svg"
+              alt="Кот МедиаКит с ноутбуком"
+              width={960}
+              height={850}
+              className="w-auto h-full object-contain"
+              priority
+            />
+          </div>
         </div>
 
-        <div className="w-7/12 flex">
-          <Image
-            src="/illustrations/cat-hero.svg"
-            alt="Кот МедиаКит с ноутбуком"
-            width={960}
-            height={850}
-            className="w-auto h-full object-contain"
-            priority
-          />
-        </div>
-
-        <div className="absolute bottom-[20px] left-0 w-full px-6">
-          <div className="container mx-auto">
+        <div className="relative mb-[10px] lg:absolute lg:bottom-[9px] xl:bottom-[14px] 2xl:bottom-[20px] lg:left-0 lg:mb-[0px] w-full lg:px-6">
+          <div className="mx-auto">
             <HeroForm />
           </div>
         </div>
 
       </section>
 
-      <div className="bg-black text-right py-2 px-4 h-[58px]">
-        <p className={`text-white opacity-40 text-base ${golos.className}`}>
+      <div className="bg-black text-right py-2 px-4 h-[48px] md:h-[58px]">
+        <p className={`text-white opacity-40 text-[10px] md:text-xs lg:text-base ${golos.className}`}>
           Нажимая кнопку, я соглашаюсь на обработку персональных данных.
         </p>
       </div>
 
       {/* Секция "О нас" */}
-      <section className="pt-20 bg-gradient-to-b from-[var(--color-brand-orange)] from-50% to-[var(--color-brand-white)] relative h-[870px]">
+      {/* <section className="pt-20 bg-gradient-to-b from-[var(--color-brand-orange)] from-50% to-[var(--color-brand-white)] relative h-[870px]">
 
         <div className="absolute left-0 bottom-0 w-6/12 z-10">
           <Image
@@ -73,7 +75,7 @@ export default function HomePage() {
             alt="Кот МедиаКит"
             width={605}
             height={574}
-            className="w-5/7 h-auto"
+            className="w-5/7 h-auto max-w-[770px]"
           />
         </div>
 
@@ -83,14 +85,14 @@ export default function HomePage() {
           <div className="relative z-10 h-full">
             <div className="flex flex-col gap-6 pt-[200px] pl-[160px] pr-[80px] pb-[40px]">
               {messages.map((msg, index) => {
-                const isLastInGroup = 
-                  index === messages.length - 1 || 
+                const isLastInGroup =
+                  index === messages.length - 1 ||
                   messages[index + 1]?.type !== msg.type;
 
                 return (
-                  <ChatMessage 
-                    key={msg.id} 
-                    message={msg} 
+                  <ChatMessage
+                    key={msg.id}
+                    message={msg}
                     isLastInGroup={isLastInGroup}
                   />
                 );
@@ -114,14 +116,14 @@ export default function HomePage() {
             ( <span className="text-black">О нас</span> )
           </h2>
         </div>
-      </section>
+      </section> */}
 
-      <div className="bg-black text-right py-2 px-4 h-[58px]"></div>
+      {/* <div className="bg-black text-right py-2 px-4 h-[58px]"></div> */}
 
       {/* Секция "Почему мы?" */}
-      <section className="py-20 bg-[var(--color-brand-white)]">
+      {/* <section className="py-20 bg-[var(--color-brand-white)]">
         <div className="container mx-auto px-6">
-          
+
           <h2 className={`relative text-5xl font-bold text-center mb-20 ${unbounded.className}`}>
             <Image
               src="/illustrations/bracket-left.svg"
@@ -157,20 +159,20 @@ export default function HomePage() {
               );
             })}
           </div>
-          
+
         </div>
-      </section>
-      
+      </section> */}
+
       {/* Секция "Форма" */}
-      <FinalBookingForm />
+      {/* <FinalBookingForm /> */}
 
       {/* Секция "Вопросы" */}
-      <section className="bg-[var(--color-brand-white)] py-20">
+      <section className="bg-[var(--color-brand-white)] py-10 md:py-20">
       <div className="container mx-auto px-6">
-        <h2 className={`text-5xl text-[var(--color-brand-gray)] font-bold mb-12 ${unbounded.className}`}>
+        <h2 className={`text-xl md:text-5xl text-center md:text-left text-[var(--color-brand-gray)] font-bold mb-6 md:mb-12 ${unbounded.className}`}>
           Часто задаваемые <span className="text-[var(--color-brand-orange)]">вопросы</span>
         </h2>
-        
+
         <div>
           {faqItems.map((item) => (
             <FaqItem key={item.id} item={item} />
@@ -178,7 +180,7 @@ export default function HomePage() {
         </div>
       </div>
     </section>
-      
+
     </main>
   );
 }

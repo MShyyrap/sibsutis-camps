@@ -50,11 +50,21 @@ export default function BookingForm() {
   return (
     <div className="relative">
 
-      <div className="absolute -bottom-1 -left-1 w-full h-[100px] bg-white"></div>
+      <div className="absolute -bottom-1 -left-1 w-full h-full bg-white"></div>
 
-      <form onSubmit={handleSubmit} className="bg-black text-white w-full py-5 px-8 flex items-center gap-7 relative z-10">
+      <form onSubmit={handleSubmit} className="bg-black text-white w-full py-3 2xl:py-5 px-4 2xl:px-8 flex flex-col gap-4 lg:gap-6 md:flex-row md:items-center relative z-10">
         <div className="flex-shrink-0">
-          <p className={`text-2xl ${unbounded.className}`}>Забронируй<br />путёвку</p>
+          <div className="flex items-center gap-6 md:flex-row md:items-center md:gap-7">
+            <p className={`text-xl md:text-base xl:text-xl 2xl:text-2xl ${unbounded.className}`}>Забронируй<br />путёвку</p>
+
+            <Image
+              src="/icons/curved-arrow.svg"
+              alt="Стрелка вниз"
+              width={80}
+              height={60}
+              className="block md:hidden"
+            />
+          </div>
         </div>
 
         <Image
@@ -63,15 +73,16 @@ export default function BookingForm() {
           width={78}
           height={18}
           priority
+          className='hidden md:block'
         />
 
-        <div className="flex-grow flex items-center gap-4">
+        <div className="flex flex-col gap-4 w-full md:flex-row md:items-center md:gap-4 flex-grow">
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Имя"
-            className={`bg-transparent border-3 border-white p-3 w-full text-white placeholder:text-white text-2xl ${unbounded.className} focus:placeholder:opacity-50`}
+            className={`bg-transparent border-3 border-white p-1 2xl:p-3 w-full text-white placeholder:text-white text-xl md:text-base xl:text-xl 2xl:text-2xl ${unbounded.className} focus:placeholder:opacity-50`}
           />
           <IMaskInput
               mask="+7 (000) 000-00-00"
@@ -82,12 +93,12 @@ export default function BookingForm() {
               placeholder="Телефон"
               onFocus={() => setIsPhoneFocused(true)}
               onBlur={() => setIsPhoneFocused(false)}
-              className={`bg-transparent border-3 border-white p-3 w-full text-white placeholder:text-white text-2xl ${unbounded.className}`}
+              className={`bg-transparent border-3 border-white p-1 2xl:p-3 w-full text-white placeholder:text-white text-xl md:text-base xl:text-xl 2xl:text-2xl ${unbounded.className}`}
           />
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`bg-[var(--color-brand-blue)] hover:bg-[#224177] transition p-[15px] whitespace-nowrap text-2xl ${unbounded.className} disabled:opacity-50`}
+            className={`bg-[var(--color-brand-blue)] hover:bg-[#224177] transition p-[7px] 2xl:p-[15px] whitespace-nowrap text-xl md:text-base xl:text-xl 2xl:text-2xl ${unbounded.className} disabled:opacity-50`}
           >
             {isSubmitting ? 'Отправка...' : 'Отправить'}
           </button>
