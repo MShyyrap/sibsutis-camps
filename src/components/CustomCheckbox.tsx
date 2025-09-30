@@ -43,7 +43,7 @@ export default function CustomCheckbox({ label, checked, onChange, disabled }: C
         </svg>
       </div>
 
-      <span className={`ml-2 text-xs text-[var(--color-brand-white)] ${golos.className}`}>
+      <span className={`ml-2 text-[10px] sm:text-xs text-[var(--color-brand-white)] ${golos.className}`}>
         {label}
       </span>
     </label>

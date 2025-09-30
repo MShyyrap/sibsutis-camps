@@ -164,7 +164,7 @@ export default function HomePage() {
       </section> */}
 
       {/* Секция "Форма" */}
-      {/* <FinalBookingForm /> */}
+      <FinalBookingForm />
 
       {/* Секция "Вопросы" */}
       <section className="bg-[var(--color-brand-white)] py-10 md:py-20">
