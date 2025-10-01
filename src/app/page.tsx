@@ -28,7 +28,7 @@ export default function HomePage() {
     <main className="flex flex-col flex-grow">
 
       {/* Секция "Hero" */}
-      <section className="container mx-auto px-6 flex flex-col pt-10 flex-grow relative">
+      <section id="home" className="container mx-auto px-6 flex flex-col pt-10 flex-grow relative">
 
         <div className="flex flex-col md:flex-row md:gap-16">
           <div className="w-full items-center md:w-5/12 flex flex-col justify-center md:items-start">
@@ -67,7 +67,7 @@ export default function HomePage() {
       </div>
 
       {/* Секция "О нас" */}
-      <section className="pt-20 bg-gradient-to-b from-[var(--color-brand-orange)] from-50% to-[var(--color-brand-white)] relative flex flex-col md:block h-auto md:h-[870px]">
+      <section id="about" className="pt-20 bg-gradient-to-b from-[var(--color-brand-orange)] from-50% to-[var(--color-brand-white)] relative flex flex-col md:block h-auto md:h-[870px]">
         <div className="md:hidden absolute inset-0 bg-[url('/textures/noise.png')] opacity-[67%]"></div>
 
         <div className="container mx-auto px-6 relative z-20 order-1 md:order-none">
@@ -125,7 +125,7 @@ export default function HomePage() {
       <div className="bg-black text-right py-2 px-4 h-[58px]"></div>
 
       {/* Секция "Почему мы?" */}
-      <section className="py-10 lg:py-20 bg-[var(--color-brand-white)]">
+      <section className="py-20 bg-[var(--color-brand-white)]">
         <div className="container mx-auto px-6">
 
           <h2 className={`relative text-3xl lg:text-5xl font-bold text-center mb-10 lg:mb-20 ${unbounded.className}`}>
@@ -169,7 +169,7 @@ export default function HomePage() {
       <FinalBookingForm />
 
       {/* Секция "Вопросы" */}
-      <section className="bg-[var(--color-brand-white)] py-10 md:py-20">
+      <section id="faq" className="bg-[var(--color-brand-white)] py-10 md:py-20">
       <div className="container mx-auto px-6">
         <h2 className={`text-xl md:text-3xl lg:text-5xl text-center md:text-left text-[var(--color-brand-gray)] font-bold mb-6 md:mb-12 ${unbounded.className}`}>
           Часто задаваемые <span className="text-[var(--color-brand-orange)]">вопросы</span>

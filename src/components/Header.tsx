@@ -9,9 +9,9 @@ import PopupForm from './PopupForm'
 import MobileNav from './MobileNav'
 
 const navLinks = [
-  { href: '/home', label: 'Главная' },
-  { href: '/about', label: 'О нас' },
-  { href: '/faq', label: 'Вопросы' },
+  { href: '#home', label: 'Главная' },
+  { href: '#about', label: 'О нас' },
+  { href: '#faq', label: 'Вопросы' },
 ]
 
 export default function Header() {
