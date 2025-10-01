@@ -137,7 +137,6 @@ export default function PopupForm({ isOpen, setIsOpen }: { isOpen: boolean; setI
           type="button"
           disabled={isSubmitting}
           className={`w-full bg-[var(--color-brand-orange)] text-white text-sm sm:text-base p-2 sm:p-3 transition hover:bg-[#D65012] ${golos.className} disabled:opacity-50`}
-          onClick={closeModal}
         >
           {isSubmitting ? 'Отправка...' : 'Отправить'}
         </button>
