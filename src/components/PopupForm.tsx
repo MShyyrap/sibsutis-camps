@@ -24,6 +24,39 @@ export default function PopupForm({ isOpen, setIsOpen }: { isOpen: boolean; setI
   const [phone, setPhone] = useState('');
   const [isPhoneFocused, setIsPhoneFocused] = useState(false);
   const [agreed, setAgreed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !phone || !agreed) {
+      setMessage('Заполните все поля и дайте согласие');
+      return;
+    }
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/submit-application', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, phone, formType: 'popup', agreed
+        }),
+      });
+
+      const data = await response.json();
+      setMessage(data.message);
+      if (data.success) {
+        setName('');
+        setPhone('');
+        setAgreed(false);
+      }
+    } catch (error) {
+      setMessage('Ошибка отправки');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   function closeModal() {
     setIsOpen(false);
@@ -46,12 +79,12 @@ export default function PopupForm({ isOpen, setIsOpen }: { isOpen: boolean; setI
       onRequestClose={closeModal}
       contentLabel="Форма обратной связи"
       overlayClassName="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
-      className="w-full max-w-md overflow-hidden bg-[var(--color-brand-gray)] p-8 text-left align-middle shadow-[0_0_15px_4px_rgba(0,0,0,0.25)] outline-none relative"
+      className="w-full max-w-md overflow-hidden bg-[var(--color-brand-gray)] p-5 sm:p-8 text-left align-middle shadow-[0_0_15px_4px_rgba(0,0,0,0.25)] outline-none relative"
       closeTimeoutMS={300}
     >
       <button
         type="button"
-        className="absolute top-8 right-8 transition-colors"
+        className="absolute top-[23px] right-5 sm:top-8 sm:right-8 transition-colors"
         onClick={closeModal}
       >
         <span className="sr-only">Закрыть</span>
@@ -60,25 +93,26 @@ export default function PopupForm({ isOpen, setIsOpen }: { isOpen: boolean; setI
           alt="Закрыть"
           width={21}
           height={21}
+          className='w-[18px] h-[18px] sm:w-[21px] sm:h-[21px]'
         />
       </button>
 
-      <h3 className={`text-2xl font-bold leading-6 text-[var(--color-brand-orange)] ${unbounded.className}`}>
+      <h3 className={`text-lg sm:text-2xl mr-8 font-bold leading-6 text-[var(--color-brand-orange)] ${unbounded.className}`}>
         Связаться с нами
       </h3>
-      <div className="mt-4">
-        <p className={`text-sm text-gray-400 ${golos.className}`}>
+      <div className="mt-2 sm:mt-4">
+        <p className={`text-xs sm:text-sm text-gray-400 ${golos.className}`}>
           Оставьте ваши данные, и мы скоро вам перезвоним.
         </p>
       </div>
 
-      <form className="mt-6 space-y-4">
+      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <input
           type="text"
           placeholder="Имя и фамилия"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className={`w-full bg-[var(--color-brand-white)] text-[var(--color-brand-gray)] text-base p-3 placeholder:text-[var(--color-brand-gray)] ${golos.className}`}
+          className={`w-full bg-[var(--color-brand-white)] text-[var(--color-brand-gray)] text-sm sm:text-base p-2 sm:p-3 placeholder:text-[var(--color-brand-gray)] ${golos.className}`}
         />
         <IMaskInput
           mask="+7 (000) 000-00-00"
@@ -89,7 +123,7 @@ export default function PopupForm({ isOpen, setIsOpen }: { isOpen: boolean; setI
           placeholder="Телефон"
           onFocus={() => setIsPhoneFocused(true)}
           onBlur={() => setIsPhoneFocused(false)}
-          className={`w-full bg-[var(--color-brand-white)] text-[var(--color-brand-gray)] text-base p-3 placeholder:text-[var(--color-brand-gray)] ${golos.className}`}
+          className={`w-full bg-[var(--color-brand-white)] text-[var(--color-brand-gray)] text-sm sm:text-base p-2 sm:p-3 placeholder:text-[var(--color-brand-gray)] ${golos.className}`}
         />
         <CustomCheckbox
           label="Я даю согласие на обработку персональных данных"
@@ -101,11 +135,17 @@ export default function PopupForm({ isOpen, setIsOpen }: { isOpen: boolean; setI
       <div className="mt-6">
         <button
           type="button"
-          className={`w-full bg-[var(--color-brand-orange)] text-white p-3 transition hover:bg-[#D65012] ${golos.className}`}
+          disabled={isSubmitting}
+          className={`w-full bg-[var(--color-brand-orange)] text-white text-sm sm:text-base p-2 sm:p-3 transition hover:bg-[#D65012] ${golos.className} disabled:opacity-50`}
           onClick={closeModal}
         >
-          Отправить
+          {isSubmitting ? 'Отправка...' : 'Отправить'}
         </button>
+        {message && (
+          <div className="text-center p-2 text-white mt-2">
+            {message}
+          </div>
+        )}
       </div>
     </Modal>
   );

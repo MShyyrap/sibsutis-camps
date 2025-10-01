@@ -7,17 +7,17 @@ const golos = Golos_Text({
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-black text-white px-[var(--spacing-65)] py-7">
+    <footer className="w-full bg-black text-white px-6 md:px-12 lg:px-[var(--spacing-65)] py-7">
       <div className="flex justify-between items-center">
 
         <div>
-          <p className={`text-xl text-white ${golos.className}`}>
+          <p className={`text-[14px] lg:text-xl font-bold text-[var(--color-brand-orange)] ${golos.className}`}>
             МедиаКит
           </p>
         </div>
-        
+
         <div>
-          <p className={`text-xl text-white ${golos.className}`}>
+          <p className={`text-[14px] lg:text-xl text-white ${golos.className}`}>
             © МедиаКит, {new Date().getFullYear()}
           </p>
         </div>
