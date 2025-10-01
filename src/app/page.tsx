@@ -67,41 +67,50 @@ export default function HomePage() {
       </div>
 
       {/* Секция "О нас" */}
-      {/* <section className="pt-20 bg-gradient-to-b from-[var(--color-brand-orange)] from-50% to-[var(--color-brand-white)] relative h-[870px]">
+      <section className="pt-20 bg-gradient-to-b from-[var(--color-brand-orange)] from-50% to-[var(--color-brand-white)] relative flex flex-col md:block h-auto md:h-[870px]">
+        <div className="md:hidden absolute inset-0 bg-[url('/textures/noise.png')] opacity-[67%]"></div>
 
-        <div className="absolute left-0 bottom-0 w-6/12 z-10">
+        <div className="container mx-auto px-6 relative z-20 order-1 md:order-none">
+          <h2 className={`text-2xl md:text-3xl lg:text-5xl text-white font-bold mb-4 md:mb-8 xl:mb-12 ${unbounded.className}`}>
+            ( <span className="text-black">О нас</span> )
+          </h2>
+        </div>
+
+        <div className="relative md:absolute top-[-100px] md:right-0 md:top-1/2 md:-translate-y-1/2 w-full md:w-13/19 md:h-full order-2 md:order-none">
+          <div className="hidden md:block absolute inset-0 bg-[url('/textures/noise.png')] opacity-[67%]"></div>
+
+          <div className="relative z-10 h-full">
+            <div className="container mx-auto px-5 lg:px-1 h-full">
+              <div className="flex flex-col gap-6 pt-[120px] md:pt-[150px] 2xl:pt-[200px] px-6 lg:pl-[160px] lg:pr-[80px] pb-[10px] lg:pb-[40px]">
+                {messages.map((msg, index) => {
+                  const isLastInGroup =
+                    index === messages.length - 1 ||
+                    messages[index + 1]?.type !== msg.type;
+
+                  return (
+                    <ChatMessage
+                      key={msg.id}
+                      message={msg}
+                      isLastInGroup={isLastInGroup}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative md:absolute md:left-0 md:bottom-0 w-full md:w-6/12 z-10 order-3 md:order-none -mt-20 md:mt-0">
           <Image
             src="/illustrations/cat-about.svg"
             alt="Кот МедиаКит"
             width={605}
             height={574}
-            className="w-5/7 h-auto max-w-[770px]"
+            className="w-5/7 h-auto min-w-[150px] max-w-[450px] md:min-w-[360px] md:max-w-[770px]"
           />
         </div>
 
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-13/19 h-[100%]">
-          <div className="absolute inset-0 bg-[url('/textures/noise.png')] opacity-[67%]"></div>
-
-          <div className="relative z-10 h-full">
-            <div className="flex flex-col gap-6 pt-[200px] pl-[160px] pr-[80px] pb-[40px]">
-              {messages.map((msg, index) => {
-                const isLastInGroup =
-                  index === messages.length - 1 ||
-                  messages[index + 1]?.type !== msg.type;
-
-                return (
-                  <ChatMessage
-                    key={msg.id}
-                    message={msg}
-                    isLastInGroup={isLastInGroup}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        <div className="absolute top-1/5 left-7/19 -translate-x-1/2 z-0">
+        <div className="hidden lg:block absolute top-1/5 left-7/19 -translate-x-1/2 z-0">
           <Image
             src="/illustrations/lines.svg"
             alt=""
@@ -111,14 +120,9 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="container mx-auto px-6 relative z-20">
-          <h2 className={`text-5xl text-white font-bold mb-12 ${unbounded.className}`}>
-            ( <span className="text-black">О нас</span> )
-          </h2>
-        </div>
-      </section> */}
+      </section>
 
-      {/* <div className="bg-black text-right py-2 px-4 h-[58px]"></div> */}
+      <div className="bg-black text-right py-2 px-4 h-[58px]"></div>
 
       {/* Секция "Почему мы?" */}
       {/* <section className="py-20 bg-[var(--color-brand-white)]">
@@ -169,7 +173,7 @@ export default function HomePage() {
       {/* Секция "Вопросы" */}
       <section className="bg-[var(--color-brand-white)] py-10 md:py-20">
       <div className="container mx-auto px-6">
-        <h2 className={`text-xl md:text-5xl text-center md:text-left text-[var(--color-brand-gray)] font-bold mb-6 md:mb-12 ${unbounded.className}`}>
+        <h2 className={`text-xl md:text-3xl lg:text-5xl text-center md:text-left text-[var(--color-brand-gray)] font-bold mb-6 md:mb-12 ${unbounded.className}`}>
           Часто задаваемые <span className="text-[var(--color-brand-orange)]">вопросы</span>
         </h2>
 
