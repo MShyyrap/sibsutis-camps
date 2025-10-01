@@ -125,16 +125,16 @@ export default function HomePage() {
       <div className="bg-black text-right py-2 px-4 h-[58px]"></div>
 
       {/* Секция "Почему мы?" */}
-      {/* <section className="py-20 bg-[var(--color-brand-white)]">
+      <section className="py-10 lg:py-20 bg-[var(--color-brand-white)]">
         <div className="container mx-auto px-6">
 
-          <h2 className={`relative text-5xl font-bold text-center mb-20 ${unbounded.className}`}>
+          <h2 className={`relative text-3xl lg:text-5xl font-bold text-center mb-10 lg:mb-20 ${unbounded.className}`}>
             <Image
               src="/illustrations/bracket-left.svg"
               alt=""
               width={74}
               height={62}
-              className="absolute right-[890px] -translate-y-1/2 mr-4"
+              className="hidden lg:block absolute right-[890px] -translate-y-1/2 mr-4"
               aria-hidden="true"
             />
             Почему мы?
@@ -143,21 +143,19 @@ export default function HomePage() {
               alt=""
               width={74}
               height={62}
-              className="absolute left-[890px] -translate-y-1/2 ml-4"
+              className="hidden lg:block absolute left-[890px] -translate-y-1/2 ml-4"
               aria-hidden="true"
             />
           </h2>
 
-          <div className="flex gap-8 items-stretch">
-            {features.map((feature, index) => {
-              const widthClass = index === 1 ? 'w-[36%]' : 'w-[32%]';
-
+          <div className="flex flex-col mx-auto max-w-[300px] md:max-w-[450px] lg:max-w-full lg:flex-row gap-8 lg:items-stretch">
+            {features.map((feature) => {
               return (
-                <div key={feature.number} className={`bg-white p-8 rounded-2xl shadow-[0_0_15px_4px_rgba(0,0,0,0.25)] text-center flex flex-col ${widthClass}`}>
+                <div key={feature.number} className={`bg-white p-4 lg:p-8 rounded-2xl shadow-[0_0_15px_4px_rgba(0,0,0,0.25)] text-center flex flex-col`}>
 
-                  <p className={`text-6xl font-medium text-[var(--color-brand-blue)] ${unbounded.className}`}>{feature.number}</p>
-                  <h3 className={`text-2xl font-bold mt-10 min-h-[3.5rem] ${unbounded.className}`}>{feature.title}</h3>
-                  <p className="mt-10">{feature.description}</p>
+                  <p className={`text-2xl md:text-4xl lg:text-6xl font-medium text-[var(--color-brand-blue)] ${unbounded.className}`}>{feature.number}</p>
+                  <h3 className={`text-base md:text-lg lg:text-2xl font-bold mt-2 md:mt-5 lg:mt-10 lg:min-h-[3.5rem] ${unbounded.className}`}>{feature.title}</h3>
+                  <p className="text-xs md:text-base mt-2 md:mt-5 lg:mt-10">{feature.description}</p>
 
                 </div>
               );
@@ -165,7 +163,7 @@ export default function HomePage() {
           </div>
 
         </div>
-      </section> */}
+      </section>
 
       {/* Секция "Форма" */}
       <FinalBookingForm />
