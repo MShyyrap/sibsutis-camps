@@ -52,7 +52,7 @@ export default function BookingForm() {
 
       <div className="absolute -bottom-1 -left-1 w-full h-full bg-white"></div>
 
-      <form onSubmit={handleSubmit} className="bg-black text-white w-full py-3 2xl:py-5 px-4 2xl:px-8 flex flex-col gap-4 lg:gap-6 md:flex-row md:items-center relative z-10">
+      <form onSubmit={handleSubmit} className="bg-black text-white w-full h-full py-3 2xl:py-5 px-4 2xl:px-8 flex flex-col gap-4 lg:gap-6 md:flex-row md:flex-wrap lg:flex-nowrap md:items-center relative z-10">
         <div className="flex-shrink-0">
           <div className="flex items-center gap-6 md:flex-row md:items-center md:gap-7">
             <p className={`text-xl md:text-base xl:text-xl 2xl:text-2xl ${unbounded.className}`}>Забронируй<br />путёвку</p>
@@ -62,7 +62,7 @@ export default function BookingForm() {
               alt="Стрелка вниз"
               width={80}
               height={60}
-              className="block md:hidden"
+              className="block lg:hidden"
             />
           </div>
         </div>
@@ -73,7 +73,7 @@ export default function BookingForm() {
           width={78}
           height={18}
           priority
-          className='hidden md:block'
+          className='hidden lg:block'
         />
 
         <div className="flex flex-col gap-4 w-full md:flex-row md:items-center md:gap-4 flex-grow">
@@ -93,7 +93,7 @@ export default function BookingForm() {
               placeholder="Телефон"
               onFocus={() => setIsPhoneFocused(true)}
               onBlur={() => setIsPhoneFocused(false)}
-              className={`bg-transparent border-3 border-white p-1 2xl:p-3 w-full text-white placeholder:text-white text-xl md:text-base xl:text-xl 2xl:text-2xl ${unbounded.className}`}
+              className={`bg-transparent border-3 min-w-[150px] border-white p-1 2xl:p-3 w-full text-white placeholder:text-white text-xl md:text-base xl:text-xl 2xl:text-2xl ${unbounded.className}`}
           />
           <button
             type="submit"
@@ -104,12 +104,12 @@ export default function BookingForm() {
           </button>
 
         </div>
+        {message && (
+          <div className={`w-full lg:w-min mx-auto text-center text-xs lg:text-sm text-white ${unbounded.className}`}>
+            {message}
+          </div>
+        )}
       </form>
-      {message && (
-        <div className="text-center p-2 text-white">
-          {message}
-        </div>
-      )}
     </div>
   );
 }

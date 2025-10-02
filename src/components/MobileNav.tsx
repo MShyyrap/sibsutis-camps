@@ -3,10 +3,10 @@
 import Image from 'next/image';
 
 const navLinks = [
-  { href: '/home', label: 'Главная' },
-  { href: '/about', label: 'О нас' },
-  { href: '/faq', label: 'Вопросы' },
-];
+  { href: '#home', label: 'Главная' },
+  { href: '#about', label: 'О нас' },
+  { href: '#faq', label: 'Вопросы' },
+]
 
 interface MobileNavProps {
   onClose: () => void;

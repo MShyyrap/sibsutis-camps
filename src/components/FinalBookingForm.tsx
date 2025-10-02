@@ -110,7 +110,7 @@ export default function FinalBookingForm() {
               </div>
             </div>
             {message && (
-              <div className="text-center p-2 text-white mt-2">
+              <div className="text-xs lg:text-sm text-center text-white mt-4">
                 {message}
               </div>
             )}
